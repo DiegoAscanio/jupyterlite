@@ -1,3 +1,8 @@
+// Função para limpar a saída do console
+function cls() {
+    console_output = "";
+}
+
 // include: shell.js
 // The Module object: Our interface to the outside world. We import
 // and export values on it. There are various ways Module can be used:
@@ -493,6 +498,9 @@ function instantiateArrayBuffer(binaryFile, imports, receiver) {
 }
 
 function instantiateAsync(binary, binaryFile, imports, callback) {
+  binaryFile = binaryFile.includes('glpsol.wasm')
+             ? 'https://raw.githubusercontent.com/DiegoAscanio/jupyterlite/main/content/operations-research/glpsol.wasm'
+             : binaryFile
   if (!binary &&
       typeof WebAssembly.instantiateStreaming == 'function' &&
       !isDataURI(binaryFile) &&
